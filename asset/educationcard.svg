@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 604.5 876">
+  <!-- Generator: Adobe Illustrator 29.7.1, SVG Export Plug-In . SVG Version: 2.1.1 Build 8)  -->
+  <defs>
+    <style>
+      .st0 {
+        letter-spacing: 0em;
+      }
+
+      .st0, .st1, .st2, .st3, .st4, .st5, .st6, .st7, .st8, .st9, .st10, .st11 {
+        isolation: isolate;
+      }
+
+      .st0, .st1, .st2, .st3, .st4, .st5, .st6, .st7, .st9 {
+        fill: #fff;
+      }
+
+      .st0, .st1, .st2, .st3, .st4, .st5, .st6, .st7, .st9, .st10 {
+        font-family: InstrumentSerif-Regular, 'Instrument Serif';
+      }
+
+      .st0, .st1, .st3, .st5 {
+        font-size: 29.5px;
+      }
+
+      .st2 {
+        letter-spacing: 0em;
+      }
+
+      .st2, .st4, .st6, .st7, .st9 {
+        font-size: 36px;
+      }
+
+      .st3 {
+        letter-spacing: 0em;
+      }
+
+      .st4 {
+        letter-spacing: 0em;
+      }
+
+      .st5 {
+        letter-spacing: 0em;
+      }
+
+      .st12 {
+        fill: url(#radial-gradient);
+      }
+
+      .st6 {
+        letter-spacing: 0em;
+      }
+
+      .st7 {
+        letter-spacing: 0em;
+      }
+
+      .st13 {
+        fill: #11110f;
+      }
+
+      .st10 {
+        fill: #f0dbbe;
+        font-size: 29.8px;
+      }
+
+      .st11 {
+        opacity: 0;
+      }
+
+      .st14 {
+        fill: none;
+        stroke: #67161f;
+        stroke-miterlimit: 10;
+        stroke-width: 4px;
+      }
+    </style>
+    <radialGradient id="radial-gradient" cx="302.2" cy="426.6" fx="302.2" fy="426.6" r="367.8" gradientTransform="translate(0 883.9) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#67161f"/>
+      <stop offset="1" stop-color="#11110f"/>
+    </radialGradient>
+  </defs>
+  <g id="Layer_1-2">
+    <rect class="st12" width="604.5" height="876" rx="45.8" ry="45.8"/>
+    <image class="st11" width="2512" height="3369" transform="translate(46.8 102.3) scale(.2)" xlink:href="educationcard-1.png"/>
+    <polyline class="st13" points="566.9 782.7 560.6 795.8 540 810 545.2 817 573.7 813.9 575.4 788 566.9 782.7"/>
+    <polyline class="st13" points="64.3 810.6 51.5 804 37.9 782.7 31.1 788 34.1 817.5 59.1 819.3 64.3 810.6"/>
+    <path class="st14" d="M566.9,82.4v690.7c0,21.1-16.5,38.2-36.9,38.2H74.5c-20.4,0-36.9-17.1-36.9-38.2V82.4c0-21.1,16.5-38.2,36.9-38.2h455.6c20.4,0,36.9,17.1,36.9,38.2h0Z"/>
+    <g class="st8">
+      <text class="st10" transform="translate(246.1 29.1)"><tspan x="0" y="0">educ</tspan></text>
+      <text class="st10" transform="translate(293.8 29.1)"><tspan x="0" y="0">a</tspan></text>
+      <text class="st10" transform="translate(305.5 29.1)"><tspan x="0" y="0">tion</tspan></text>
+    </g>
+    <g class="st8">
+      <text class="st10" transform="translate(246.1 830.3) scale(1 -1)"><tspan x="0" y="0">educ</tspan></text>
+      <text class="st10" transform="translate(293.8 830.3) scale(1 -1)"><tspan x="0" y="0">a</tspan></text>
+      <text class="st10" transform="translate(305.5 830.3) scale(1 -1)"><tspan x="0" y="0">tion</tspan></text>
+    </g>
+    <g class="st8">
+      <text class="st10" transform="translate(25.6 484.5) rotate(-90)"><tspan x="0" y="0">educ</tspan></text>
+      <text class="st10" transform="translate(25.6 436.8) rotate(-90)"><tspan x="0" y="0">a</tspan></text>
+      <text class="st10" transform="translate(25.6 425.1) rotate(-90)"><tspan x="0" y="0">tion</tspan></text>
+    </g>
+    <g class="st8">
+      <text class="st10" transform="translate(575.4 487.9) rotate(-90) scale(1 -1)"><tspan x="0" y="0">educ</tspan></text>
+      <text class="st10" transform="translate(575.4 440.2) rotate(-90) scale(1 -1)"><tspan x="0" y="0">a</tspan></text>
+      <text class="st10" transform="translate(575.4 428.5) rotate(-90) scale(1 -1)"><tspan x="0" y="0">tion</tspan></text>
+    </g>
+    <g class="st8">
+      <text class="st6" transform="translate(95.7 456.9)"><tspan x="0" y="0">F</tspan></text>
+      <text class="st9" transform="translate(110 456.9)"><tspan x="0" y="0">irst </tspan></text>
+      <text class="st4" transform="translate(156 456.9)"><tspan x="0" y="0">Y</tspan></text>
+      <text class="st9" transform="translate(170.3 456.9)"><tspan x="0" y="0">ear Digital </tspan></text>
+      <text class="st9" transform="translate(302.4 456.9)"><tspan x="0" y="0">M</tspan></text>
+      <text class="st9" transform="translate(326 456.9)"><tspan x="0" y="0">edia S</tspan></text>
+      <text class="st9" transform="translate(398.3 456.9)"><tspan x="0" y="0">t</tspan></text>
+      <text class="st9" transform="translate(407.4 456.9)"><tspan x="0" y="0">udent </tspan></text>
+      <text class="st9" transform="translate(485.3 456.9)"><tspan x="0" y="0">a</tspan></text>
+      <text class="st9" transform="translate(499.5 456.9)"><tspan x="0" y="0">t</tspan></text>
+      <text class="st9" transform="translate(64 497.9)"><tspan x="0" y="0">R</tspan></text>
+      <text class="st9" transform="translate(82.4 497.9)"><tspan x="0" y="0">M</tspan></text>
+      <text class="st9" transform="translate(106.1 497.9)"><tspan x="0" y="0">IT </tspan></text>
+      <text class="st7" transform="translate(137.8 497.9)"><tspan x="0" y="0">U</tspan></text>
+      <text class="st9" transform="translate(156.6 497.9)"><tspan x="0" y="0">ni</tspan></text>
+      <text class="st6" transform="translate(181.6 497.9)"><tspan x="0" y="0">v</tspan></text>
+      <text class="st9" transform="translate(195.3 497.9)"><tspan x="0" y="0">ersi</tspan></text>
+      <text class="st2" transform="translate(238.6 497.9)"><tspan x="0" y="0">t</tspan></text>
+      <text class="st9" transform="translate(247.2 497.9)"><tspan x="0" y="0">y </tspan></text>
+      <text class="st2" transform="translate(267.8 497.9)"><tspan x="0" y="0">V</tspan></text>
+      <text class="st9" transform="translate(283.4 497.9)"><tspan x="0" y="0">iet</tspan></text>
+      <text class="st2" transform="translate(313.5 497.9)"><tspan x="0" y="0">N</tspan></text>
+      <text class="st9" transform="translate(332.3 497.9)"><tspan x="0" y="0">am, SGS Campus</tspan></text>
+    </g>
+    <g class="st8">
+      <text class="st3" transform="translate(163 358.1)"><tspan x="0" y="0">H</tspan></text>
+      <text class="st1" transform="translate(178.7 358.1)"><tspan x="0" y="0">anoi</tspan></text>
+      <text class="st0" transform="translate(222.9 358.1)"><tspan x="0" y="0">-</tspan></text>
+      <text class="st1" transform="translate(235.1 358.1)"><tspan x="0" y="0">Amsterdam </tspan></text>
+      <text class="st3" transform="translate(356.8 358.1)"><tspan x="0" y="0">H</tspan></text>
+      <text class="st1" transform="translate(372.6 358.1)"><tspan x="0" y="0">ighschool</tspan></text>
+      <text class="st1" transform="translate(247 391.6)"><tspan x="0" y="0"> </tspan></text>
+      <text class="st5" transform="translate(252 391.6)"><tspan x="0" y="0">f</tspan></text>
+      <text class="st1" transform="translate(259.6 391.6)"><tspan x="0" y="0">or the Gi</tspan></text>
+      <text class="st0" transform="translate(344.9 391.6)"><tspan x="0" y="0">f</tspan></text>
+      <text class="st1" transform="translate(352.8 391.6)"><tspan x="0" y="0">ted</tspan></text>
+    </g>
+  </g>
+</svg>
