@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-grunge">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Works — Tracy Tran</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;800&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      :root {
+        --blood: #d3192a;
+        --blood-dark: #8a0f19;
+        --soot: #0b0b0b;
+        --ink: #111;
+        --ash: #e8e8e8;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        color: #eee;
+      }
+      a {
+        color: #ffd9dd;
+      }
+      .wrap {
+        width: min(1240px, 94vw);
+        margin: clamp(80px, 9svh, 120px) auto 10svh;
+      }
+
+      /* Header */
+      .head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 20px;
+      }
+      .title {
+        font: 800 clamp(36px, 8vw, 96px) / 0.9 "Instrument Serif", serif;
+        margin: 0;
+        color: #fff;
+        letter-spacing: 0.01em;
+        text-shadow: 0 8px 28px rgba(0, 0, 0, 0.55);
+      }
+      .filters {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .chip {
+        border: 1px dashed var(--blood-dark);
+        color: #f1f1f1;
+        background: #0f0f0f;
+        padding: 9px 14px;
+        border-radius: 999px;
+        font: 800 11px/1 "Barlow";
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: 0.15s ease;
+        user-select: none;
+      }
+      .chip:hover {
+        transform: translateY(-1px);
+      }
+      .chip[aria-pressed="true"] {
+        border-color: var(--blood);
+        filter: contrast(1.08);
+      }
+
+      /* Grid */
+      .grid {
+        --gap: clamp(12px, 2.2vw, 22px);
+        display: grid;
+        gap: var(--gap);
+        grid-template-columns: repeat(12, 1fr);
+      }
+      .span-4 {
+        grid-column: span 4;
+      }
+      .span-6 {
+        grid-column: span 6;
+      }
+      .span-8 {
+        grid-column: span 8;
+      }
+
+      /* Card */
+      .card {
+        position: relative;
+        aspect-ratio: 4/3;
+        overflow: hidden;
+        border-radius: 16px;
+        border: 2px solid #1b1b1b;
+        background: #0d0d0d;
+        box-shadow: 0 18px 34px rgba(0, 0, 0, 0.55),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+        isolation: isolate;
+      }
+      .card a {
+        position: absolute;
+        inset: 0;
+        display: block;
+      }
+      .card__img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: contrast(0.95) saturate(0.85);
+        transform: scale(1.02);
+        transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.2, 1),
+          filter 0.3s ease;
+      }
+      .card__ink {
+        position: absolute;
+        inset: -1px;
+        pointer-events: none;
+        mix-blend-mode: multiply;
+        opacity: 0.9;
+        background: radial-gradient(
+            40% 60% at 20% 10%,
+            rgba(255, 255, 255, 0.05),
+            transparent 60%
+          ),
+          radial-gradient(
+            50% 60% at 80% 90%,
+            rgba(255, 255, 255, 0.05),
+            transparent 60%
+          );
+      }
+      .card__scratches {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.25;
+        mix-blend-mode: overlay;
+        background: repeating-linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.06) 0 3px,
+          transparent 3px 6px
+        );
+      }
+      .card:hover .card__img {
+        transform: scale(1.06);
+        filter: contrast(1) saturate(1);
+      }
+      .card:focus-within {
+        outline: 2px solid var(--blood);
+        outline-offset: 4px;
+      }
+
+      /* label */
+      .label {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 2;
+        padding: 14px 16px;
+        color: #f4f4f4;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0.65) 38%,
+          rgba(0, 0, 0, 0.88) 100%
+        );
+      }
+      .label__t {
+        font: 800 clamp(16px, 2.6vw, 26px) / 1 "Instrument Serif", serif;
+        margin: 0 0 4px;
+      }
+      .label__m {
+        font: 700 11px/1 "Barlow";
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        opacity: 0.86;
+      }
+      .label__desc {
+        margin-top: 6px;
+        font: 500 13px/1.4 "Barlow";
+        opacity: 0.85;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        overflow: hidden;
+      }
+
+      /* Modal */
+      dialog.work {
+        inset: 0;
+        border: 0;
+        padding: 0;
+        width: min(980px, 94vw);
+        max-height: 92svh;
+        margin: auto;
+        border-radius: 18px;
+        overflow: auto;
+        background: #0f0f0f;
+        box-shadow: 0 40px 80px rgba(0, 0, 0, 0.65);
+      }
+      dialog::backdrop {
+        background: rgba(0, 0, 0, 0.7);
+      }
+      .work__hero {
+        width: 100%;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        filter: contrast(0.98);
+      }
+      .work__body {
+        padding: 18px clamp(16px, 3vw, 28px) 24px;
+        color: #eaeaea;
+      }
+      .work__meta {
+        font: 700 11px/1 "Barlow";
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: #ffd9dd;
+        margin-bottom: 10px;
+      }
+      .work__h {
+        font: 800 clamp(22px, 4.6vw, 48px) / 1 "Instrument Serif", serif;
+        margin: 0.2rem 0 0.8rem;
+      }
+      .work__desc {
+        font: 500 16px/1.6 "Barlow";
+        color: #dedede;
+      }
+      .work__close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 5;
+        border: 0;
+        background: linear-gradient(180deg, var(--blood), var(--blood-dark));
+        color: #fff;
+        padding: 10px 12px;
+        border-radius: 12px;
+        font: 800 12px/1 "Barlow";
+        letter-spacing: 0.12em;
+        cursor: pointer;
+      }
+      .is-hidden {
+        display: none !important;
+      }
+
+      /* ==== FIX: cards keep shape and black bg ==== */
+      .card {
+        position: relative;
+        aspect-ratio: 4/3;
+        min-height: 240px; /* ensures visible height on slow/missing images */
+        border-radius: 16px;
+        border: 2px solid #1b1b1b;
+        background: var(--soot); /* force solid near-black bg */
+        box-shadow: 0 18px 34px rgba(0, 0, 0, 0.55),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end; /* so label sticks to bottom */
+      }
+
+      /* Image always fills, but black shows if missing */
+      .card__img {
+        flex: 1 0 auto;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        background: #0b0b0b; /* fallback layer */
+        display: block;
+        transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.2, 1),
+          filter 0.3s ease;
+      }
+
+      /* Keep label readable, sticks at bottom */
+      .label {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 14px 16px;
+        color: var(--ash);
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0.65) 38%,
+          rgba(0, 0, 0, 0.9) 100%
+        );
+      }
+
+      /* ===== Responsive Tweaks ===== */
+      @media (max-width: 1440px) {
+        .wrap {
+          width: min(1080px, 98vw);
+        }
+        .title {
+          font-size: clamp(32px, 6vw, 72px);
+        }
+        .grid {
+          --gap: clamp(10px, 2vw, 18px);
+        }
+      }
+      @media (max-width: 1024px) {
+        .wrap {
+          width: min(820px, 98vw);
+        }
+        .head {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+        .title {
+          font-size: clamp(24px, 7vw, 48px);
+        }
+        .grid {
+          grid-template-columns: repeat(6, 1fr);
+        }
+        .span-4 {
+          grid-column: span 6;
+        }
+        .span-6 {
+          grid-column: span 6;
+        }
+        .span-8 {
+          grid-column: span 6;
+        }
+      }
+      @media (max-width: 430px) {
+        .wrap {
+          width: 100vw;
+          margin: 40px 0 6svh;
+          padding: 0 4vw;
+        }
+        .head {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
+        }
+        .title {
+          font-size: clamp(18px, 10vw, 32px);
+        }
+        .filters {
+          gap: 6px;
+        }
+        .chip {
+          padding: 7px 10px;
+          font-size: 10px;
+        }
+        .grid {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+        .span-4,
+        .span-6,
+        .span-8 {
+          grid-column: span 1;
+        }
+        .card {
+          min-height: 160px;
+        }
+        .label {
+          padding: 10px 8px;
+        }
+        dialog.work {
+          width: 98vw;
+          max-height: 96svh;
+          border-radius: 10px;
+        }
+        .work__body {
+          padding: 10px 6vw 16px;
+        }
+        .work__h {
+          font-size: clamp(16px, 7vw, 28px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Fixed nav -->
+    <nav class="nav" aria-label="Primary">
+      <a class="nav__brand" href="#home">Tracy Tran</a>
+      <ul class="nav__links">
+        <li><a href="index.html#home">About</a></li>
+        <li><a href="works.html#works">Works</a></li>
+        <li><a href="contacts.html">Contacts</a></li>
+      </ul>
+    </nav>
+
+    <main class="wrap">
+      <header class="head">
+        <h1 class="title">Selected Works</h1>
+        <div class="filters" role="group" aria-label="Filter works">
+          <button class="chip" data-filter="all" aria-pressed="true">
+            All
+          </button>
+          <button class="chip" data-filter="design">Design</button>
+          <button class="chip" data-filter="interactive">Interactive</button>
+        </div>
+      </header>
+
+      <!-- GRID -->
+      <section class="grid" id="grid" aria-live="polite">
+        <!-- ===== CARD: Uninvited Guest (Design) ===== -->
+        <article
+          class="card span-6"
+          data-tags="design"
+          data-title="Uninvited Guest"
+          data-year="2024"
+          data-hero="asset/s4112088_a3_IndividualWork.jpg"
+        >
+          <img
+            class="card__img"
+            src="asset/s4112088_a3_IndividualWork.jpg"
+            alt="Uninvited Guest cover"
+            loading="lazy"
+          />
+          <div class="card__ink"></div>
+          <div class="card__scratches"></div>
+          <a
+            href="projects/uninvited-guest.html"
+            aria-label="Open Uninvited Guest"
+          ></a>
+          <div class="label">
+            <h3 class="label__t">Uninvited Guest</h3>
+            <div class="label__m">Design • 2024</div>
+            <p class="label__desc">
+              A surreal, Alice-in-Wonderland–inspired tableau with playful
+              characters, unusual props, and narrative-driven visuals.
+            </p>
+          </div>
+          <!-- Rich modal description -->
+          <template class="card__desc-template">
+            <p>
+              This project explores fantastic creativity through the design of a
+              surreal digital image. Inspired by the whimsical absurdity of
+              Alice in Wonderland, the work combines playful character designs,
+              unusual props, and narrative-driven visuals to blur the line
+              between the ordinary and the extraordinary.
+            </p>
+            <p>
+              Through a process of ideation, prototyping, key preference
+              studies, and testing, the project developed into a narrative
+              tableau where strange guests disrupt the familiar. Characters like
+              the stitched rabbit figures and animated objects embody curiosity,
+              chaos, and unexpected humor.
+            </p>
+            <p>
+              The final outcome visualizes how imagination can turn the mundane
+              into something fantastical, using digital art techniques to craft
+              an immersive and theatrical atmosphere. Ultimately,
+              <em>Uninvited Guest</em> demonstrates how design can transform
+              abstract ideas into experiential storytelling that sparks wonder.
+            </p>
+            <!-- ===== PROCESS (Uninvited Guest) ===== -->
+            <section
+              class="process flow"
+              id="process"
+              aria-label="Uninvited Guest – Process"
+            >
+              <h2 class="sr-only">Process</h2>
+
+              <img
+                src="asset/uninvited-guest_01.jpg"
+                alt="Early moodboard and rough thumbnails for Uninvited Guest"
+                loading="lazy"
+              />
+              <p class="process__blurb">
+                Kicked off with moodboards and quick thumbnails to lock tone:
+                whimsical, surreal, and a little unsettling.
+              </p>
+
+              <img
+                src="asset/uninvited-guest_02.jpg"
+                alt="Refined sketches and layout explorations"
+                loading="lazy"
+              />
+              <p class="process__blurb">
+                Refined composition and character placement to balance focal
+                points and narrative flow.
+              </p>
+
+              <img
+                src="asset/uninvited-guest_03.jpg"
+                alt="Prop and character studies with color notes"
+                loading="lazy"
+              />
+              <p class="process__blurb">
+                Developed props and characters; tested color accents that guide
+                the eye without flattening depth.
+              </p>
+
+              <img
+                src="asset/uninvited-guest_04.jpg"
+                alt="Lighting and material tests"
+                loading="lazy"
+              />
+              <p class="process__blurb">
+                Iterated on lighting to push contrast and silhouette
+                readability; tuned materials for story texture.
+              </p>
+
+              <img
+                src="asset/uninvited-guest_05.jpg"
+                alt="Blocking and staging passes"
+                loading="lazy"
+              />
+              <p class="process__blurb">
+                Blocked the scene, adjusted staging for a clearer entrance path
+                for the ‘uninvited’ elements.
+              </p>
+
+              <img
+                src="asset/uninvited-guest_06.jpg"
+                alt="Final composite with polish"
+                loading="lazy"
+              />
+              <p class="process__blurb">
+                Final composite: added micro-contrast, edge control, and subtle
+                VFX to tie the tableau together.
+              </p>
+            </section>
+          </template>
+        </article>
+
+        <!-- ===== CARD: Poster Microsite (Interactive) ===== -->
+        <article
+          class="card span-6"
+          data-tags="interactive"
+          data-title="Boots"
+          data-year="2025"
+          data-hero="asset/bootscover.png"
+        >
+          <img
+            class="card__img"
+            src="asset/bootscover.png"
+            alt="Boots cover"
+            loading="lazy"
+          />
+          <div class="card__ink"></div>
+          <div class="card__scratches"></div>
+          <a
+            href="projects/poster-microsite.html"
+            aria-label="Open Poster Microsite"
+          ></a>
+          <div class="label">
+            <h3 class="label__t">Boots</h3>
+            <div class="label__m">Interactive Poetry • 2025</div>
+            <p class="label__desc">
+              “Boots” is an interactive web experience inspired by Rudyard
+              Kipling’s relentless war chant, capturing a soldier’s
+              psychological breakdown in the monotony and futility of endless
+              marching.
+            </p>
+          </div>
+
+          <!-- Rich modal description -->
+          <template class="card__desc-template">
+            <p>
+              “Boots” is an interactive web experience inspired by Rudyard
+              Kipling’s relentless war chant, capturing a soldier’s
+              psychological breakdown in the monotony and futility of endless
+              marching.
+            </p>
+            <p>
+              The narrative shifts from steady, regimented order to disjointed
+              fragments, concluding in an uncertain, looping state. Visual
+              bootprints, textured or faint, appear at timed intervals or fade
+              subtly into the background with each scroll “step,” mirroring the
+              poem’s rhythm and the soldier’s mental spiral.
+            </p>
+
+            <video
+              controls
+              playsinline
+              style="width: 100%; border-radius: 12px; margin-top: 1rem"
+              onerror="this.outerHTML='<img src=`asset/Demo-A1-s4112088-tran-khanh-chi-ezgif.com-video-to-gif-converter.gif` alt=`Fallback GIF` style=`width:100%; border-radius:12px; margin-top:1rem`>'"
+            >
+              <source
+                src="asset/Demo-A1-s4112088-tran-khanh-chi.MOV"
+                type="video/quicktime"
+              />
+              <source
+                src="asset/Demo-A1-s4112088-tran-khanh-chi.MOV"
+                type="video/mp4"
+              />
+              <img
+                src="asset/Demo-A1-s4112088-tran-khanh-chi-ezgif.com-video-to-gif-converter.gif"
+                alt="Fallback GIF"
+                style="width: 100%; border-radius: 12px; margin-top: 1rem"
+              />
+            </video>
+            <!-- ===== PROCESS (Boots) ===== -->
+            <section
+              class="process flow"
+              id="boots-process"
+              aria-label="Boots – Process"
+            >
+              <h2 class="sr-only">Process</h2>
+
+              <img
+                src="asset/boots_01.jpg"
+                alt="Initial moodboard and early wireframes for Boots"
+                loading="lazy"
+              />
+              <p class="process__blurb">
+                Started with moodboards and wireframes to capture the rhythm of
+                marching and the claustrophobic repetition.
+              </p>
+
+              <img
+                src="asset/boots_02.jpg"
+                alt="Typography and pacing experiments"
+                loading="lazy"
+              />
+              <p class="process__blurb">
+                Explored typographic treatments and pacing systems to echo the
+                relentless cadence of Kipling’s poem.
+              </p>
+
+              <img
+                src="asset/boots_03.jpg"
+                alt="Interaction and scroll-based prototyping"
+                loading="lazy"
+              />
+              <p class="process__blurb">
+                Built scroll-based prototypes where bootprints emerge at timed
+                intervals, reinforcing monotony through rhythm.
+              </p>
+
+              <img
+                src="asset/boots_04.jpg"
+                alt="Testing visual textures and motion cues"
+                loading="lazy"
+              />
+              <p class="process__blurb">
+                Added textured bootprints, motion fades, and subtle animations
+                to reflect the soldier’s mental spiral.
+              </p>
+
+              <img
+                src="asset/process/boots/boots_05.jpg"
+                alt="Final polish with responsive and accessibility adjustments"
+                loading="lazy"
+              />
+              <p class="process__blurb">
+                Final refinements: responsive layouts, contrast checks, and
+                accessibility tweaks to ensure immersive clarity.
+              </p>
+            </section>
+          </template>
+        </article>
+
+        <!-- ===== CARD: Design ===== -->
+        <article
+          class="card span-4"
+          data-tags="design"
+          data-title="Design Work - TBU"
+          data-year="-"
+          data-hero="asset/tbu.jpg"
+        >
+          <img
+            class="card__img"
+            src="asset/tbu.jpg"
+            alt="cover"
+            loading="lazy"
+          />
+          <div class="card__ink"></div>
+          <div class="card__scratches"></div>
+          <a href="projects/tbu.html" aria-label="Open tbu"></a>
+          <div class="label">
+            <h3 class="label__t">Design Work - TBU</h3>
+            <div class="label__m">Design • -</div>
+            <p class="label__desc">Design Work will be updated here.</p>
+          </div>
+          <template class="card__desc-template">
+            <p>Works by Tracy will be updated here.</p>
+          </template>
+        </article>
+
+        <!-- ===== CARD: Interactive  ===== -->
+        <article
+          class="card span-4"
+          data-tags="interactive"
+          data-title="Interactive Work - TBU"
+          data-year="-"
+          data-hero="asset/tbu.jpg"
+        >
+          <img
+            class="card__img"
+            src="asset/tbu.jpg"
+            alt=" cover"
+            loading="lazy"
+          />
+          <div class="card__ink"></div>
+          <div class="card__scratches"></div>
+          <a href="projects/tbu.html" aria-label="tbu"></a>
+          <div class="label">
+            <h3 class="label__t">Interactive Work - TBU</h3>
+            <div class="label__m">Interactive • -</div>
+            <p class="label__desc">Interactive work will be updated here.</p>
+          </div>
+          <template class="card__desc-template">
+            <p>Works by Tracy will be updated here.</p>
+          </template>
+        </article>
+
+        <!-- ===== CARD: Design ===== -->
+        <article
+          class="card span-4"
+          data-tags="design"
+          data-title="Design Work - TBU"
+          data-year="-"
+          data-hero="asset/tbu.jpg"
+        >
+          <img class="card__img" src="asset/tbu.jpg" alt="tbu" loading="lazy" />
+          <div class="card__ink"></div>
+          <div class="card__scratches"></div>
+          <a href="projects/tbu.html" aria-label="Open tbu"></a>
+          <div class="label">
+            <h3 class="label__t">Design Work - TBU</h3>
+            <div class="label__m">Design • -</div>
+            <p class="label__desc">Design work will be updated here.</p>
+          </div>
+          <template class="card__desc-template">
+            <p>Works by Tracy will be updated here.</p>
+          </template>
+        </article>
+      </section>
+    </main>
+
+    <!-- MODAL (progressive enhancement; real links still work without JS) -->
+    <dialog class="work" id="workModal" aria-labelledby="workTitle">
+      <button class="work__close" data-close>Close</button>
+      <img class="work__hero" id="workHero" alt="" />
+      <div class="work__body">
+        <div class="work__meta" id="workMeta"></div>
+        <h2 class="work__h" id="workTitle"></h2>
+        <div class="work__desc" id="workDesc"></div>
+      </div>
+    </dialog>
+
+    <script>
+      (() => {
+        const grid = document.getElementById("grid");
+        const chips = document.querySelectorAll(".chip");
+
+        // --- Filters ---
+        chips.forEach((chip) => {
+          chip.addEventListener("click", () => {
+            chips.forEach((c) => c.setAttribute("aria-pressed", "false"));
+            chip.setAttribute("aria-pressed", "true");
+            const key = chip.dataset.filter;
+            grid.querySelectorAll(".card").forEach((card) => {
+              const tag = (card.dataset.tags || "").toLowerCase();
+              const show =
+                key === "all" || tag.split(/\s*,\s*|\s+/).includes(key);
+              card.classList.toggle("is-hidden", !show);
+            });
+          });
+        });
+
+        // --- Modal (only if supported) ---
+        const supportsDialog = typeof HTMLDialogElement !== "undefined";
+        if (!supportsDialog) return;
+
+        const modal = document.getElementById("workModal");
+        const hero = document.getElementById("workHero");
+        const meta = document.getElementById("workMeta");
+        const title = document.getElementById("workTitle");
+        const desc = document.getElementById("workDesc");
+
+        function openFrom(card) {
+          const t = card.dataset.title || "Untitled";
+          title.textContent = t;
+          const tags = (card.dataset.tags || "").replace(/,/g, " • ");
+          meta.textContent = `${tags}${
+            card.dataset.year ? " • " + card.dataset.year : ""
+          }`
+            .trim()
+            .replace(/^•\s*/, "");
+          hero.src = card.dataset.hero || card.querySelector("img")?.src || "";
+          hero.alt = `${t} hero`;
+
+          // rich description from <template>, fallback to label text
+          desc.innerHTML = "";
+          const tpl = card.querySelector(".card__desc-template");
+          if (tpl && tpl.content) {
+            desc.appendChild(tpl.content.cloneNode(true));
+          } else {
+            const fallback =
+              card.querySelector(".label__desc")?.textContent || "";
+            if (fallback) {
+              const p = document.createElement("p");
+              p.textContent = fallback;
+              desc.appendChild(p);
+            }
+          }
+
+          modal.showModal();
+        }
+
+        // Intercept clicks only when modal exists
+        grid.addEventListener(
+          "click",
+          (e) => {
+            const card = e.target.closest(".card");
+            if (!card || card.classList.contains("is-hidden")) return;
+            const link = card.querySelector("a");
+            if (!link) return;
+            e.preventDefault(); // modal instead of navigation
+            openFrom(card);
+          },
+          true
+        );
+
+        modal.addEventListener("click", (e) => {
+          if (e.target.matches("[data-close]") || e.target === modal)
+            modal.close();
+        });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && modal.open) modal.close();
+        });
+      })();
+    </script>
+
+    <!-- No-JS tiny help: show a brief desc inside the card -->
+    <noscript>
+      <style>
+        .label__desc {
+          display: block !important;
+          -webkit-line-clamp: unset;
+          line-clamp: unset;
+        }
+      </style>
+    </noscript>
+  </body>
+</html>
