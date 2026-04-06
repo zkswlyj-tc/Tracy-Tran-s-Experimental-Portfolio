@@ -220,6 +220,11 @@ input, textarea {
   width: 100%; background: transparent; border: 0; outline: 0;
   color: var(--ash); font-family: "Plus Jakarta Sans", sans-serif; padding: 14px;
 }
+.label-text {
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
 
 /* =======================================
    8. MEDIA QUERIES (RESPONSIVE)
